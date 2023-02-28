@@ -16,6 +16,10 @@ class GalleryMemStore : GalleryStore {
         return galleries
     }
 
+    override fun delete(gallery: GalleryModel) {
+        galleries.remove(gallery)
+    }
+
     override fun update(gallery: GalleryModel) {
         var foundGallery: GalleryModel? = galleries.find { p -> p.id == gallery.id }
         if (foundGallery != null) {

@@ -23,8 +23,6 @@ class GalleryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGalleryBinding
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-   // var location = Location(52.245696, -7.139102, 15f)
-    // val galleries = ArrayList<GalleryModel>()
     var gallery = GalleryModel()
     lateinit var app: MainApp
     var edit = false
@@ -39,7 +37,7 @@ class GalleryActivity : AppCompatActivity() {
         app = application as MainApp
 
         if (intent.hasExtra("gallery_edit")) {
-            var edit = true
+            edit = true
             gallery = intent.extras?.getParcelable("gallery_edit")!!
             binding.galleryTitle.setText(gallery.title)
             binding.description.setText(gallery.description)
@@ -129,13 +127,18 @@ class GalleryActivity : AppCompatActivity() {
             }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_gallery, menu)
+        if (edit && menu != null) menu.getItem(0).setVisible(true)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.item_delete -> {
+                app.galleries.delete(gallery)
+                finish()
+            }
             R.id.item_cancel -> { finish() }
         }
         return super.onOptionsItemSelected(item)
