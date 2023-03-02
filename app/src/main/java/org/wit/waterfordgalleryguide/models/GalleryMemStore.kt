@@ -20,6 +20,11 @@ class GalleryMemStore : GalleryStore {
         galleries.remove(gallery)
     }
 
+    override fun findById(id:Long) : GalleryModel? {
+        val foundPlacemark: GalleryModel? = galleries.find { it.id == id }
+        return foundPlacemark
+    }
+
     override fun update(gallery: GalleryModel) {
         var foundGallery: GalleryModel? = galleries.find { p -> p.id == gallery.id }
         if (foundGallery != null) {

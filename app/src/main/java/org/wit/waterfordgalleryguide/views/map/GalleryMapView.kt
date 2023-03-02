@@ -1,55 +1,49 @@
-package org.wit.waterfordgalleryguide.activities
+package org.wit.waterfordgalleryguide.views.map
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.picasso.Picasso
 import org.wit.waterfordgalleryguide.databinding.ActivityGalleryMapsBinding
 import org.wit.waterfordgalleryguide.databinding.ContentGalleryMapsBinding
 import org.wit.waterfordgalleryguide.main.MainApp
+import org.wit.waterfordgalleryguide.models.GalleryModel
 
-
-class GalleryMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener  {
+class GalleryMapView : AppCompatActivity() , GoogleMap.OnMarkerClickListener{
 
     private lateinit var binding: ActivityGalleryMapsBinding
     private lateinit var contentBinding: ContentGalleryMapsBinding
-    lateinit var map: GoogleMap
     lateinit var app: MainApp
+    lateinit var presenter: GalleryMapPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = application as MainApp
         binding = ActivityGalleryMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+
+        presenter = GalleryMapPresenter(this)
+
         contentBinding = ContentGalleryMapsBinding.bind(binding.root)
+
         contentBinding.mapView.onCreate(savedInstanceState)
-        contentBinding.mapView.getMapAsync {
-            map = it
-            configureMap()
+        contentBinding.mapView.getMapAsync{
+            presenter.doPopulateMap(it)
         }
     }
-
-    fun configureMap() {
-        map.setOnMarkerClickListener(this)
-        map.uiSettings.setZoomControlsEnabled(true)
-        app.galleries.findAll().forEach {
-            val loc = LatLng(it.lat, it.lng)
-            val options = MarkerOptions().title(it.title).position(loc)
-            map.addMarker(options).tag = it.id
-            map.setOnMarkerClickListener(this)
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
-        }
+    fun showGallery(gallery: GalleryModel) {
+        contentBinding.currentTitle.text = gallery.title
+        contentBinding.currentDescription.text = gallery.description
+        Picasso.get()
+            .load(gallery.image)
+            .into(contentBinding.imageView2)
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        contentBinding.currentTitle.text = marker.title
-
-        return false
+        presenter.doMarkerSelected(marker)
+        return true
     }
 
     override fun onDestroy() {
@@ -76,4 +70,6 @@ class GalleryMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener
         super.onSaveInstanceState(outState)
         contentBinding.mapView.onSaveInstanceState(outState)
     }
+
+
 }

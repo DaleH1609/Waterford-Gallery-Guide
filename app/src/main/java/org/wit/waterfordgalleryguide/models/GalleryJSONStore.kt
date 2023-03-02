@@ -45,6 +45,10 @@ class GalleryJSONStore(private val context: Context) : GalleryStore {
         serialize()
     }
 
+    override fun findById(id:Long) : GalleryModel? {
+        val foundPlacemark: GalleryModel? = galleries.find { it.id == id }
+        return foundPlacemark
+    }
 
     override fun update(gallery: GalleryModel) {
         val galleriesList = findAll() as ArrayList<GalleryModel>

@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.wit.waterfordgalleryguide">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".main.MainApp"
         android:allowBackup="true"
@@ -12,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WaterfordGalleryGuide">
         <activity
-            android:name=".activities.GalleryMapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_gallery_maps"
+            android:name=".views.map.GalleryMapView"
+            android:exported="true"
+            android:label="@string/title_activity_placemark_maps"
             android:theme="@style/Theme.WaterfordGalleryGuide.NoActionBar" />
 
         <meta-data
@@ -22,11 +25,11 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".activities.MapActivity"
-            android:exported="false"
+            android:name=".views.location.EditLocationView"
+            android:exported="true"
             android:label="@string/title_activity_map" />
         <activity
-            android:name=".activities.GalleryListActivity"
+            android:name=".views.gallerylist.GalleryListView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.GalleryActivity" />
+        <activity android:name=".views.gallery.GalleryView" />
     </application>
 
 </manifest>
