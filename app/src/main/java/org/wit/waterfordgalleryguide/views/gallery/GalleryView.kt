@@ -35,9 +35,10 @@ class GalleryView : AppCompatActivity() {
             presenter.doSelectImage()
         }
 
-        binding.galleryLocation.setOnClickListener {
-            presenter.cacheGallery(binding.galleryTitle.text.toString(), binding.description.text.toString())
-            presenter.doSetLocation()
+        binding.mapView2.getMapAsync {
+            map = it
+            presenter.doConfigureMap(map)
+            it.setOnMapClickListener { presenter.doSetLocation() }
         }
 
         binding.mapView2.onCreate(savedInstanceState);
@@ -90,7 +91,8 @@ class GalleryView : AppCompatActivity() {
         if (gallery.image != Uri.EMPTY) {
             binding.chooseImage.setText(R.string.change_placemark_image)
         }
-
+        binding.lat.setText("%.6f".format(gallery.lat))
+        binding.lng.setText("%.6f".format(gallery.lng))
     }
 
     fun updateImage(image: Uri){
@@ -118,6 +120,7 @@ class GalleryView : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         binding.mapView2.onResume()
+        presenter.doRestartLocationUpdates()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

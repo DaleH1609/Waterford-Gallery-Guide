@@ -6,12 +6,15 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.waterfordgalleryguide.helpers.checkLocationPermissions
+import org.wit.waterfordgalleryguide.helpers.createDefaultLocationRequest
 import org.wit.waterfordgalleryguide.helpers.showImagePicker
 import org.wit.waterfordgalleryguide.main.MainApp
 import org.wit.waterfordgalleryguide.models.GalleryModel
@@ -21,6 +24,7 @@ import timber.log.Timber
 
 class GalleryPresenter(private val view: GalleryView) {
     var map: GoogleMap? = null
+    private val locationRequest = createDefaultLocationRequest()
     var gallery = GalleryModel()
     var app: MainApp = view.application as MainApp
     var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
@@ -96,9 +100,24 @@ class GalleryPresenter(private val view: GalleryView) {
 
     @SuppressLint("MissingPermission")
     fun doSetCurrentLocation() {
-        Timber.i("setting location from doSetLocation")
+
         locationService.lastLocation.addOnSuccessListener {
             locationUpdate(it.latitude, it.longitude)
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun doRestartLocationUpdates() {
+        var locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                if (locationResult != null && locationResult.locations != null) {
+                    val l = locationResult.locations.last()
+                    locationUpdate(l.latitude, l.longitude)
+                }
+            }
+        }
+        if (!edit) {
+            locationService.requestLocationUpdates(locationRequest, locationCallback, null)
         }
     }
 
