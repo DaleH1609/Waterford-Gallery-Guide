@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "996253759454",
+    "project_id": "waterford-gallery-guide-404b6",
+    "storage_bucket": "waterford-gallery-guide-404b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996253759454:android:2ab66980a6df09499a4f4f",
+        "android_client_info": {
+          "package_name": "org.wit.waterfordgalleryguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996253759454-dknei6jrjsn6vuplumn7fckstc62sg63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaY9OSi1LRrRRsRaATTECJ-qUBGlrN8JE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996253759454-dknei6jrjsn6vuplumn7fckstc62sg63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

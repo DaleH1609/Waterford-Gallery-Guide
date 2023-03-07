@@ -50,8 +50,8 @@ class GalleryPresenter(private val view: GalleryView) {
             if (checkLocationPermissions(view)) {
                 doSetCurrentLocation()
             }
-            gallery.lat = location.lat
-            gallery.lng = location.lng
+            gallery.location.lat = location.lat
+            gallery.location.lng = location.lng
         }
 
     }
@@ -87,11 +87,11 @@ class GalleryPresenter(private val view: GalleryView) {
 
     fun doSetLocation() {
 
-        if (gallery.zoom != 0f) {
-            location.lat =  gallery.lat
-            location.lng = gallery.lng
-            location.zoom = gallery.zoom
-            locationUpdate(gallery.lat, gallery.lng)
+        if (gallery.location.zoom != 0f) {
+            location.lat =  gallery.location.lat
+            location.lng = gallery.location.lng
+            location.zoom = gallery.location.zoom
+            locationUpdate(gallery.location.lat, gallery.location.lng)
         }
         val launcherIntent = Intent(view, EditLocationView::class.java)
             .putExtra("location", location)
@@ -125,20 +125,19 @@ class GalleryPresenter(private val view: GalleryView) {
         gallery.title = title;
         gallery.description = description
     }
+
     fun doConfigureMap(m: GoogleMap) {
         map = m
-        locationUpdate(gallery.lat, gallery.lng)
+        locationUpdate(gallery.location.lat, gallery.location.lng)
     }
 
     fun locationUpdate(lat: Double, lng: Double) {
-        gallery.lat = lat
-        gallery.lng = lng
-        gallery.zoom = 15f
+        gallery.location = location
         map?.clear()
         map?.uiSettings?.setZoomControlsEnabled(true)
-        val options = MarkerOptions().title(gallery.title).position(LatLng(gallery.lat, gallery.lng))
+        val options = MarkerOptions().title(gallery.title).position(LatLng(gallery.location.lat, gallery.location.lng))
         map?.addMarker(options)
-        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(gallery.lat, gallery.lng), gallery.zoom))
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(gallery.location.lat,gallery.location.lng), gallery.location.zoom))
         view.showGallery(gallery)
     }
 
@@ -173,9 +172,7 @@ class GalleryPresenter(private val view: GalleryView) {
                             Timber.i("Got Location ${result.data.toString()}")
                             val location = result.data!!.extras?.getParcelable<Location>("location")!!
                             Timber.i("Location == $location")
-                            location.lat = location.lat
-                            location.lng = location.lng
-                            location.zoom = location.zoom
+                            gallery.location = location
                         } // end of if
                     }
                     AppCompatActivity.RESULT_CANCELED -> { } else -> { }

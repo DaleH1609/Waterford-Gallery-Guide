@@ -31,11 +31,13 @@ class GalleryMemStore : GalleryStore {
             foundGallery.title = gallery.title
             foundGallery.description = gallery.description
             foundGallery.image = gallery.image
-            foundGallery.lat = gallery.lat
-            foundGallery.lng = gallery.lng
-            foundGallery.zoom = gallery.zoom
+            foundGallery.location = gallery.location
             logAll()
         }
+    }
+
+    override fun clear(){
+        galleries.clear()
     }
 
     override fun create(gallery: GalleryModel) {

@@ -81,18 +81,21 @@ class GalleryView : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    fun showGallery(gallery: GalleryModel) {
-        binding.galleryTitle.setText(gallery.title)
-        binding.description.setText(gallery.description)
+
+    fun showGallery(galley: GalleryModel) {
+        if (binding.galleryTitle.text.isEmpty()) binding.galleryTitle.setText(galley.title)
+
+        if (binding.description.text.isEmpty())  binding.description.setText(galley.description)
 
         Picasso.get()
-            .load(gallery.image)
+            .load(galley.image)
             .into(binding.galleryImage)
+
         if (gallery.image != Uri.EMPTY) {
             binding.chooseImage.setText(R.string.change_placemark_image)
         }
-        binding.lat.setText("%.6f".format(gallery.lat))
-        binding.lng.setText("%.6f".format(gallery.lng))
+        binding.lat.setText("%.6f".format(gallery.location.lat))
+        binding.lng.setText("%.6f".format(gallery.location.lng))
     }
 
     fun updateImage(image: Uri){

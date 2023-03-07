@@ -14,7 +14,10 @@
     <string name="title_activity_map">Map</string>
     <string name="menu_deletePlacemark">Delete</string>
     <string name="title_activity_gallery_maps">GalleryMapsActivity</string>
+    <string name="title_activity_login"> Signup/Login to Waterford</string>
     <string name="title_activity_placemark_maps">Map of All Placemarks </string>
+    <string name="menu_showMap">Show Map</string>
+    <string name="menu_logout">Logout</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

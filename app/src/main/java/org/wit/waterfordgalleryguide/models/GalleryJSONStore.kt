@@ -45,6 +45,10 @@ class GalleryJSONStore(private val context: Context) : GalleryStore {
         serialize()
     }
 
+    override fun clear(){
+        galleries.clear()
+    }
+
     override fun findById(id:Long) : GalleryModel? {
         val foundPlacemark: GalleryModel? = galleries.find { it.id == id }
         return foundPlacemark
@@ -57,9 +61,7 @@ class GalleryJSONStore(private val context: Context) : GalleryStore {
             foundGallery.title = gallery.title
             foundGallery.description = gallery.description
             foundGallery.image = gallery.image
-            foundGallery.lat = gallery.lat
-            foundGallery.lng = gallery.lng
-            foundGallery.zoom = gallery.zoom
+            foundGallery.location = gallery.location
         }
         serialize()
     }

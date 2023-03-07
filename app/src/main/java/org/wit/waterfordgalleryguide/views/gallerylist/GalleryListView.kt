@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.integration.android.IntentIntegrator
 import org.wit.waterfordgalleryguide.R
 import org.wit.waterfordgalleryguide.databinding.ActivityGalleryBinding
@@ -35,6 +36,11 @@ class GalleryListView : AppCompatActivity(), GalleryListener {
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter =
             GalleryAdapter(presenter.getGalleries(), this)
+
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            binding.toolbar.title = "${title}: ${user.email}"
+        }
 
         binding.scanQR.setOnClickListener() {
         val scanner = IntentIntegrator(this)
@@ -76,6 +82,7 @@ class GalleryListView : AppCompatActivity(), GalleryListener {
         when (item.itemId) {
             R.id.item_add -> { presenter.doAddGallery() }
             R.id.item_map -> { presenter.doShowGalleriesMap() }
+            R.id.item_logout -> { presenter.doLogout() }
         }
         return super.onOptionsItemSelected(item)
     }

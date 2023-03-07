@@ -7,6 +7,7 @@ import org.wit.waterfordgalleryguide.main.MainApp
 import org.wit.waterfordgalleryguide.models.GalleryModel
 import org.wit.waterfordgalleryguide.views.gallery.GalleryView
 import org.wit.waterfordgalleryguide.views.gallerylist.GalleryListView
+import org.wit.waterfordgalleryguide.views.login.LoginView
 import org.wit.waterfordgalleryguide.views.map.GalleryMapView
 
 class GalleryListPresenter(val view: GalleryListView) {
@@ -31,6 +32,11 @@ class GalleryListPresenter(val view: GalleryListView) {
     fun doEditGallery(gallery: GalleryModel) {
         val launcherIntent = Intent(view, GalleryView::class.java)
         launcherIntent.putExtra("gallery_edit", gallery)
+        editIntentLauncher.launch(launcherIntent)
+    }
+
+    fun doLogout(){
+        val launcherIntent = Intent(view, LoginView::class.java)
         editIntentLauncher.launch(launcherIntent)
     }
 
