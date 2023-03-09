@@ -4,12 +4,14 @@ import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import androidx.room.Embedded
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Parcelize
+@Entity
 data class GalleryModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                         var fbId: String = "",
-                        var image: Uri = Uri.EMPTY,
+                        var image: String = "",
                         var title: String = "",
                         var description: String = "",
                         @Embedded var location : Location = Location()): Parcelable

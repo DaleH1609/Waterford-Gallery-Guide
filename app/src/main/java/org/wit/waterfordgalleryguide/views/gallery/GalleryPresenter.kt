@@ -27,6 +27,7 @@ class GalleryPresenter(private val view: GalleryView) {
     private val locationRequest = createDefaultLocationRequest()
     var gallery = GalleryModel()
     var app: MainApp = view.application as MainApp
+    var locationManualyChanged = false;
     var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
@@ -87,6 +88,8 @@ class GalleryPresenter(private val view: GalleryView) {
 
     fun doSetLocation() {
 
+        locationManualyChanged = true;
+
         if (gallery.location.zoom != 0f) {
             location.lat =  gallery.location.lat
             location.lng = gallery.location.lng
@@ -112,7 +115,9 @@ class GalleryPresenter(private val view: GalleryView) {
             override fun onLocationResult(locationResult: LocationResult?) {
                 if (locationResult != null && locationResult.locations != null) {
                     val l = locationResult.locations.last()
-                    locationUpdate(l.latitude, l.longitude)
+                    if(!locationManualyChanged){
+                        locationUpdate(l.latitude, l.longitude)
+                    }
                 }
             }
         }
@@ -152,7 +157,7 @@ class GalleryPresenter(private val view: GalleryView) {
                     AppCompatActivity.RESULT_OK -> {
                         if (result.data != null) {
                             Timber.i("Got Result ${result.data!!.data}")
-                            gallery.image = result.data!!.data!!
+                            gallery.image = result.data!!.data!!.toString()
                             view.updateImage(gallery.image)
                         }
                     }

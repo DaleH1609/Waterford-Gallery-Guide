@@ -11,7 +11,9 @@ import com.squareup.picasso.Picasso
 import org.wit.waterfordgalleryguide.R
 import org.wit.waterfordgalleryguide.databinding.ActivityGalleryBinding
 import org.wit.waterfordgalleryguide.models.GalleryModel
+import org.wit.waterfordgalleryguide.models.Location
 import timber.log.Timber
+import timber.log.Timber.i
 
 class GalleryView : AppCompatActivity() {
 
@@ -82,29 +84,33 @@ class GalleryView : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun showGallery(galley: GalleryModel) {
-        if (binding.galleryTitle.text.isEmpty()) binding.galleryTitle.setText(galley.title)
+    fun showGallery(gallery: GalleryModel) {
+        if (binding.galleryTitle.text.isEmpty()) binding.galleryTitle.setText(gallery.title)
+        if (binding.description.text.isEmpty())  binding.description.setText(gallery.description)
 
-        if (binding.description.text.isEmpty())  binding.description.setText(galley.description)
+        if (gallery.image != "") {
+            Picasso.get()
+                .load(gallery.image)
+                .into(binding.galleryImage)
 
-        Picasso.get()
-            .load(galley.image)
-            .into(binding.galleryImage)
-
-        if (gallery.image != Uri.EMPTY) {
             binding.chooseImage.setText(R.string.change_placemark_image)
         }
-        binding.lat.setText("%.6f".format(gallery.location.lat))
-        binding.lng.setText("%.6f".format(gallery.location.lng))
+        this.showLocation(gallery.location)
     }
 
-    fun updateImage(image: Uri){
-        Timber.i("Image updated")
+    fun showLocation (loc : Location) {
+        binding.lat.setText("%.6f".format(loc.lat))
+        binding.lng.setText("%.6f".format(loc.lng))
+    }
+
+    fun updateImage(image: String){
+        i("Image updated")
         Picasso.get()
             .load(image)
             .into(binding.galleryImage)
         binding.chooseImage.setText(R.string.change_placemark_image)
     }
+
     override fun onDestroy() {
         super.onDestroy()
         binding.mapView2.onDestroy()
