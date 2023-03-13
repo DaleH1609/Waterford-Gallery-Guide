@@ -4,8 +4,10 @@ import android.content.Context
 import android.graphics.Bitmap
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import org.wit.waterfordgalleryguide.helpers.readImageFromPath
+import timber.log.Timber
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -30,6 +32,7 @@ class GalleryFireStore(val context: Context) : GalleryStore {
             gallery.fbId = key
             galleries.add(gallery)
             db.child("users").child(userId).child("galleries").child(key).setValue(gallery)
+            updateImage(gallery)
         }
     }
 
@@ -53,7 +56,10 @@ class GalleryFireStore(val context: Context) : GalleryStore {
                         gallery.image = it.toString()
                         db.child("users").child(userId).child("galleries").child(gallery.fbId).setValue(gallery)
                     }
-                }
+                }.addOnFailureListener{
+                var errorMessage = it.message
+                Timber.i("Failure: $errorMessage")
+              }
             }
         }
     }
@@ -68,7 +74,9 @@ class GalleryFireStore(val context: Context) : GalleryStore {
         }
 
         db.child("users").child(userId).child("galleries").child(gallery.fbId).setValue(gallery)
-
+        if(gallery.image.length > 0){
+            updateImage(gallery)
+        }
     }
 
     override fun delete(gallery: GalleryModel) {
@@ -95,8 +103,9 @@ class GalleryFireStore(val context: Context) : GalleryStore {
             }
         }
         userId = FirebaseAuth.getInstance().currentUser!!.uid
+        st = FirebaseStorage.getInstance().reference
         db = FirebaseDatabase.getInstance("https://waterford-gallery-guide-404b6-default-rtdb.firebaseio.com/").reference
-       // galleries.clear()
+        galleries.clear()
         db.child("users").child(userId).child("galleries")
             .addListenerForSingleValueEvent(valueEventListener)
     }
