@@ -72,7 +72,6 @@ class GalleryFireStore(val context: Context) : GalleryStore {
             foundGallery.image = gallery.image
             foundGallery.location = gallery.location
         }
-
         db.child("users").child(userId).child("galleries").child(gallery.fbId).setValue(gallery)
         if(gallery.image.length > 0){
             updateImage(gallery)

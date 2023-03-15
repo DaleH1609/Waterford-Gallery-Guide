@@ -14,10 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WaterfordGalleryGuide">
-
-        <activity android:name=".views.login.LoginView"
-            android:label="@string/title_activity_login"
-            android:launchMode="singleTop"
+        <activity
+            android:name=".activities.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +44,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".views.login.LoginView"
+            android:label="@string/title_activity_login"
+            android:launchMode="singleTop"
+            android:exported="true">
         </activity>
         <activity android:name=".views.gallery.GalleryView" />
     </application>

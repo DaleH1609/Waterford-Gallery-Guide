@@ -37,16 +37,16 @@ class GalleryView : AppCompatActivity() {
             presenter.doSelectImage()
         }
 
-        binding.mapView2.getMapAsync {
-            map = it
-            presenter.doConfigureMap(map)
-            it.setOnMapClickListener { presenter.doSetLocation() }
+        binding.mapView2.setOnClickListener {
+            presenter.cacheGallery(binding.galleryTitle.text.toString(), binding.description.text.toString())
+            presenter.doSetLocation()
         }
 
         binding.mapView2.onCreate(savedInstanceState);
         binding.mapView2.getMapAsync {
             map = it
             presenter.doConfigureMap(map)
+            it.setOnMapClickListener { presenter.doSetLocation() }
         }
 
     }
@@ -98,7 +98,7 @@ class GalleryView : AppCompatActivity() {
         this.showLocation(gallery.location)
     }
 
-    fun showLocation (loc : Location) {
+   private fun showLocation (loc : Location) {
         binding.lat.setText("%.6f".format(loc.lat))
         binding.lng.setText("%.6f".format(loc.lng))
     }
