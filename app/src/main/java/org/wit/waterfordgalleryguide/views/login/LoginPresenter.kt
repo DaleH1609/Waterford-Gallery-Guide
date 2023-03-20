@@ -1,9 +1,11 @@
 package org.wit.waterfordgalleryguide.views.login
 
 import android.content.Intent
+import android.widget.Button
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
+import org.wit.waterfordgalleryguide.activities.ButtonActivity
 import org.wit.waterfordgalleryguide.main.MainApp
 import org.wit.waterfordgalleryguide.models.GalleryFireStore
 import org.wit.waterfordgalleryguide.views.gallerylist.GalleryListView
@@ -29,7 +31,7 @@ class LoginPresenter (val view: LoginView)  {
                 if (fireStore != null) {
                     fireStore!!.fetchGalleries{
                         view?.hideProgress()
-                        val launcherIntent = Intent(view, GalleryListView::class.java)
+                        val launcherIntent = Intent(view, ButtonActivity::class.java)
                         loginIntentLauncher.launch(launcherIntent)
                     }
                 } else {

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.zxing.integration.android.IntentIntegrator
 import org.wit.waterfordgalleryguide.R
-import org.wit.waterfordgalleryguide.databinding.ActivityGalleryBinding
 import org.wit.waterfordgalleryguide.databinding.ActivityGalleryListBinding
 import org.wit.waterfordgalleryguide.main.MainApp
 import org.wit.waterfordgalleryguide.models.GalleryModel
