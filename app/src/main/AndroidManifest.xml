@@ -37,6 +37,10 @@
             android:exported="true"
             android:label="@string/title_activity_map" />
         <activity
+            android:name=".activities.ButtonActivity"
+            android:exported="true"
+            android:label="Main Menu" />
+        <activity
             android:name=".views.gallerylist.GalleryListView"
             android:exported="true">
             <intent-filter>

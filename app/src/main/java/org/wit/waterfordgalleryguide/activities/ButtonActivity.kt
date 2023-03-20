@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import org.wit.waterfordgalleryguide.R
 import org.wit.waterfordgalleryguide.databinding.ActivityButtonBinding
+import org.wit.waterfordgalleryguide.views.gallerylist.GalleryListView
 import org.wit.waterfordgalleryguide.views.login.LoginView
 
 
@@ -30,23 +31,15 @@ class ButtonActivity: AppCompatActivity() {
             scanner.initiateScan()
         }
 
-        binding.btnScanQR.setOnClickListener {
-            val scanner = IntentIntegrator(this)
-            scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
-            scanner.setBeepEnabled(false)
-            scanner.initiateScan()
-        }
-
-        binding.btnLogout.setOnClickListener {
-            val intent = Intent(this@ButtonActivity, LoginView::class.java)
-            startActivity(intent)
-        }
-
-
-        binding.btnLogout.setOnClickListener {
-            val intent = Intent(this@ButtonActivity, LoginView::class.java)
+        binding.visitedGalleries.setOnClickListener {
+            val intent = Intent(this@ButtonActivity, GalleryListView::class.java)
             startActivity(intent)
          }
+
+        binding.btnLogout.setOnClickListener {
+            val intent = Intent(this@ButtonActivity, LoginView::class.java)
+            startActivity(intent)
+        }
 
 
     }

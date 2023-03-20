@@ -36,7 +36,7 @@ class LoginPresenter (val view: LoginView)  {
                     }
                 } else {
                     view?.hideProgress()
-                    val launcherIntent = Intent(view, GalleryListView::class.java)
+                    val launcherIntent = Intent(view, ButtonActivity::class.java)
                     loginIntentLauncher.launch(launcherIntent)
                 }
             } else {
@@ -54,7 +54,7 @@ class LoginPresenter (val view: LoginView)  {
             if (task.isSuccessful) {
                 fireStore!!.fetchGalleries {
                     view?.hideProgress()
-                    val launcherIntent = Intent(view, GalleryListView::class.java)
+                    val launcherIntent = Intent(view, ButtonActivity::class.java)
                     loginIntentLauncher.launch(launcherIntent)
                 }
             } else {
