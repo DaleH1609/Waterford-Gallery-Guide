@@ -12,7 +12,6 @@ import org.wit.waterfordgalleryguide.R
 import org.wit.waterfordgalleryguide.databinding.ActivityGalleryBinding
 import org.wit.waterfordgalleryguide.models.GalleryModel
 import org.wit.waterfordgalleryguide.models.Location
-import timber.log.Timber
 import timber.log.Timber.i
 
 class GalleryView : AppCompatActivity() {
@@ -87,6 +86,7 @@ class GalleryView : AppCompatActivity() {
     fun showGallery(gallery: GalleryModel) {
         if (binding.galleryTitle.text.isEmpty()) binding.galleryTitle.setText(gallery.title)
         if (binding.description.text.isEmpty())  binding.description.setText(gallery.description)
+        binding.ratingBar.setRating(gallery.rating)
 
         if (gallery.image != "") {
             Picasso.get()

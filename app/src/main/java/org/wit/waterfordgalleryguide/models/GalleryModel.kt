@@ -13,6 +13,7 @@ data class GalleryModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
                         var fbId: String = "",
                         var image: String = "",
                         var title: String = "",
+                        var rating: Float = 0f,
                         var description: String = "",
                         @Embedded var location : Location = Location()): Parcelable
 
