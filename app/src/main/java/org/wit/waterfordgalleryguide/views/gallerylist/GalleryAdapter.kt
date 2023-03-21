@@ -35,6 +35,7 @@ class GalleryAdapter constructor(private var galleries: List<GalleryModel>,
         fun bind(gallery: GalleryModel, listener: GalleryListener) {
             binding.galleryTitle.text = gallery.title
             binding.galleryDescription.text = gallery.description
+            binding.ratingBar.rating = gallery.rating
             if (gallery.image != ""){
             Picasso.get()
                 .load(gallery.image)

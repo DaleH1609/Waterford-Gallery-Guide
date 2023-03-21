@@ -32,12 +32,12 @@ class GalleryView : AppCompatActivity() {
         presenter = GalleryPresenter(this)
 
         binding.chooseImage.setOnClickListener {
-            presenter.cacheGallery(binding.galleryTitle.text.toString(), binding.description.text.toString())
+            presenter.cacheGallery(binding.galleryTitle.text.toString(), binding.description.text.toString(), binding.ratingBar.rating)
             presenter.doSelectImage()
         }
 
         binding.mapView2.setOnClickListener {
-            presenter.cacheGallery(binding.galleryTitle.text.toString(), binding.description.text.toString())
+            presenter.cacheGallery(binding.galleryTitle.text.toString(), binding.description.text.toString(), binding.ratingBar.rating)
             presenter.doSetLocation()
         }
 
@@ -69,7 +69,7 @@ class GalleryView : AppCompatActivity() {
                     Snackbar.make(binding.root, R.string.enter_placemark_title, Snackbar.LENGTH_LONG)
                         .show()
                 } else {
-                    presenter.doAddOrSave(binding.galleryTitle.text.toString(), binding.description.text.toString())
+                    presenter.doAddOrSave(binding.galleryTitle.text.toString(), binding.description.text.toString(), binding.ratingBar.rating)
                 }
             }
             R.id.item_delete -> {

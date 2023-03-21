@@ -58,9 +58,10 @@ class GalleryPresenter(private val view: GalleryView) {
     }
 
 
-    fun doAddOrSave(title: String, description: String) {
+    fun doAddOrSave(title: String, description: String, rating: Float) {
         gallery.title = title
         gallery.description = description
+        gallery.rating = rating
         if (edit) {
             app.galleries.update(gallery)
         } else {
@@ -126,9 +127,10 @@ class GalleryPresenter(private val view: GalleryView) {
         }
     }
 
-    fun cacheGallery (title: String, description: String) {
+    fun cacheGallery (title: String, description: String, rating: Float) {
         gallery.title = title;
         gallery.description = description
+        gallery.rating = rating
     }
 
     fun doConfigureMap(m: GoogleMap) {
