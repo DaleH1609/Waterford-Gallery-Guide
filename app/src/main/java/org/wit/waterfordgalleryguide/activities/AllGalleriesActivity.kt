@@ -26,7 +26,7 @@ class AllGalleriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAllGalleriesBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_all_galleries)
+        setContentView(binding.root)
         setSupportActionBar(binding.toolbarAllAdd)
 
 

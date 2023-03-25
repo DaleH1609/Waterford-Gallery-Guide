@@ -17,6 +17,7 @@
     <string name="title_activity_login"> Signup/Login to WGG</string>
     <string name="all_galleries">All Galleries</string>
     <string name="title_activity_placemark_maps">Map of All Placemarks </string>
+    <string name="gallery">Gallery</string>
     <string name="main_view_galleries">View Galleries</string>
     <string name="main_all_galleries">All Galleries</string>
     <string name="menu_showMap">Show Map</string>

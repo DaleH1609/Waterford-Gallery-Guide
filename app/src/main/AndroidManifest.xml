@@ -43,7 +43,7 @@
         <activity
             android:name=".activities.AllGalleriesActivity"
             android:exported="true"
-            android:label="@string/title_activity_map" />
+            android:label="@string/gallery" />
         <activity
             android:name=".activities.ButtonActivity"
             android:exported="true"
