@@ -11,8 +11,8 @@ android {
 
     defaultConfig {
         applicationId "org.wit.waterfordgalleryguide"
-        minSdk 30
-        targetSdk 32
+        minSdk 29
+        targetSdk 31
         versionCode 7
         versionName "7.0"
 

@@ -16,6 +16,7 @@ class LoginView : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = title
 
         binding.progressBar.visibility = View.GONE
 

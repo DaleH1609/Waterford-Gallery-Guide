@@ -37,6 +37,14 @@
             android:exported="true"
             android:label="@string/title_activity_map" />
         <activity
+            android:name=".activities.AllGalleriesListActivity"
+            android:exported="true"
+            android:label="@string/all_galleries"/>
+        <activity
+            android:name=".activities.AllGalleriesActivity"
+            android:exported="true"
+            android:label="@string/title_activity_map" />
+        <activity
             android:name=".activities.ButtonActivity"
             android:exported="true"
             android:label="Main Menu" />

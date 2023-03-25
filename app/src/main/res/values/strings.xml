@@ -14,7 +14,8 @@
     <string name="title_activity_map">Map</string>
     <string name="menu_deletePlacemark">Delete</string>
     <string name="title_activity_gallery_maps">GalleryMapsActivity</string>
-    <string name="title_activity_login"> Signup/Login to Waterford</string>
+    <string name="title_activity_login"> Signup/Login to WGG</string>
+    <string name="all_galleries">All Galleries</string>
     <string name="title_activity_placemark_maps">Map of All Placemarks </string>
     <string name="main_view_galleries">View Galleries</string>
     <string name="main_all_galleries">All Galleries</string>

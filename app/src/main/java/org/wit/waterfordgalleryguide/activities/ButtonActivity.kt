@@ -36,6 +36,11 @@ class ButtonActivity: AppCompatActivity() {
             startActivity(intent)
          }
 
+        binding.allGalleries.setOnClickListener {
+            val intent = Intent(this@ButtonActivity, AllGalleriesListActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btnLogout.setOnClickListener {
             val intent = Intent(this@ButtonActivity, LoginView::class.java)
             startActivity(intent)
