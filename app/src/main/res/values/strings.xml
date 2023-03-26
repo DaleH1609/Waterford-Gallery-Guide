@@ -22,6 +22,8 @@
     <string name="main_all_galleries">All Galleries</string>
     <string name="menu_showMap">Show Map</string>
     <string name="scan_qr">Scan QR Code</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="all_map">Gallery Map</string>
     <string name="menu_logout">Logout</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

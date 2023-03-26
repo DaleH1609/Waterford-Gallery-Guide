@@ -78,7 +78,7 @@ class AllGalleriesListActivity : AppCompatActivity(), AllGalleriesListener {
 
     override fun onAllGalleriesClick(allGalleries: AllGalleriesModel) {
         val launcherIntent = Intent(this, AllGalleriesActivity::class.java)
-        startActivityForResult(launcherIntent,0)
+        launcherIntent.putExtra("galleries_edit", allGalleries)
         refreshIntentLauncher.launch(launcherIntent)
     }
 }

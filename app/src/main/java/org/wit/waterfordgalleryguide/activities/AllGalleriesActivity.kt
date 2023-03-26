@@ -33,11 +33,11 @@ class AllGalleriesActivity : AppCompatActivity() {
 
         Timber.plant(Timber.DebugTree())
 
-           if (intent.hasExtra("galleries_edit")) {
-               gallery = intent.extras?.getParcelable("galleries_edit")!!
-               binding.allGalleryTitle.setText(gallery.allTitle)
-               binding.allGalleryDescription.setText(gallery.allDescription)
-             }
+        if (intent.hasExtra("galleries_edit")) {
+            gallery = intent.extras?.getParcelable("galleries_edit")!!
+            binding.allGalleryTitle.setText(gallery.allTitle)
+            binding.allGalleryDescription.setText(gallery.allDescription)
+        }
 
         gallery.allTitle = binding.allGalleryTitle.text.toString()
         gallery.allDescription = binding.allGalleryDescription.text.toString()

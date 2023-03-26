@@ -24,7 +24,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map)
+        setContentView(R.layout.activity_map2)
         location = intent.extras?.getParcelable<AllLocation>("location")!!
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -35,9 +35,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,
         mMap = googleMap
         val loc = LatLng(location.lat, location.lng)
         val options = MarkerOptions()
-            .title("Placemark")
+            .title("Gallery")
             .snippet("GPS : $loc")
-            .draggable(true)
             .position(loc)
         mMap.addMarker(options)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
