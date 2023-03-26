@@ -46,7 +46,7 @@ class AllGalleriesActivity : AppCompatActivity() {
             .into(binding.allGalleryImage)
 
         binding.allGalleriesLocation.setOnClickListener {
-            val location = AllLocation(52.245696, -7.139102, 15f)
+            val location = AllLocation(gallery.lat, gallery.lng, 15f)
             val launcherIntent = Intent(this, MapActivity::class.java)
                 .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)

@@ -40,7 +40,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback,
             .position(loc)
         mMap.addMarker(options)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
-        mMap.setOnMarkerDragListener(this)
         mMap.setOnMarkerClickListener(this)
     }
 
