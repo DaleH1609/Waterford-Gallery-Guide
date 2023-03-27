@@ -37,8 +37,13 @@ class AllGalleriesAdapter constructor(
         fun bind(allGalleries: AllGalleriesModel, listener: AllGalleriesListener) {
             binding.allGalleryTitle.text = allGalleries.allTitle
             binding.allGalleryDescription.text = allGalleries.allDescription
+            if (allGalleries.newimage != "") {
+                Picasso.get()
+                    .load(allGalleries.newimage)
+                    .resize(200, 200)
+                    .into(binding.imageIcon2)
+            }
             binding.root.setOnClickListener { listener.onAllGalleriesClick(allGalleries) }
-            Picasso.get().load(allGalleries.newimage).resize(200,200).into(binding.imageIcon2)
         }
     }
 }

@@ -36,11 +36,6 @@ class GalleryListView : AppCompatActivity(), GalleryListener {
         binding.recyclerView.adapter =
             GalleryAdapter(presenter.getGalleries(), this)
 
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user != null) {
-            binding.toolbar.title = "${title}: ${user.email}"
-        }
-
         binding.scanQR.setOnClickListener() {
         val scanner = IntentIntegrator(this)
         scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)

@@ -12,6 +12,7 @@ import org.wit.waterfordgalleryguide.R
 import org.wit.waterfordgalleryguide.databinding.ActivityAllGalleriesBinding
 import org.wit.waterfordgalleryguide.models.AllGalleriesModel
 import org.wit.waterfordgalleryguide.models.AllLocation
+import org.wit.waterfordgalleryguide.models.GalleryModel
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -19,8 +20,8 @@ class AllGalleriesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAllGalleriesBinding
     var gallery = AllGalleriesModel()
-    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher: ActivityResultLauncher<Intent>
+    private lateinit var imageIntentLauncher: ActivityResultLauncher<Intent>
     val IMAGE_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,16 +72,38 @@ class AllGalleriesActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Location ${result.data.toString()}")
-                            val location = result.data!!.extras?.getParcelable<AllLocation>("location")!!
+                            val location =
+                                result.data!!.extras?.getParcelable<AllLocation>("location")!!
                             i("Location == $location")
                             gallery.lat = location.lat
                             gallery.lng = location.lng
                             gallery.zoom = location.zoom
                         } // end of if
                     }
-                    RESULT_CANCELED -> { } else -> { }
+                    RESULT_CANCELED -> {}
+                    else -> {}
                 }
             }
+    }
+
+    fun showAllGalleries(galleries: GalleryModel) {
+        if (binding.allGalleryTitle.text.isEmpty()) binding.allGalleryTitle.setText(gallery.allTitle)
+        if (binding.allGalleryDescription.text.isEmpty()) binding.allGalleryDescription.setText(
+            gallery.allDescription
+        )
+
+        if (gallery.newimage != "") {
+            Picasso.get()
+                .load(gallery.newimage)
+                .into(binding.allGalleryImage)
+        }
+    }
+
+    fun updateImage(image: String){
+        i("Image updated")
+        Picasso.get()
+            .load(image)
+            .into(binding.allGalleryImage)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -93,22 +116,24 @@ class AllGalleriesActivity : AppCompatActivity() {
     }
 
     private fun registerImagePickerCallback() {
+
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { result ->
-                when(result.resultCode){
-                    RESULT_OK -> {
+                when (result.resultCode) {
+                    AppCompatActivity.RESULT_OK -> {
                         if (result.data != null) {
                             Timber.i("Got Result ${result.data!!.data}")
-                            gallery.newimage = result.data!!.data!!
-                            Picasso.get()
-                                .load(gallery.newimage)
-                                .into(binding.allGalleryImage)
-                        } // end of if
+                            gallery.newimage = result.data!!.data!!.toString()
+                            updateImage(gallery.newimage)
+                        }
                     }
-                    RESULT_CANCELED -> { } else -> { }
+                    AppCompatActivity.RESULT_CANCELED -> {}
+                    else -> {}
                 }
+
             }
     }
 }
+
 

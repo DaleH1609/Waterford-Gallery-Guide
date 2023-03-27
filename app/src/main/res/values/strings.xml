@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Waterford Gallery Guide</string>
+    <string name="app_name">Gallery Guide</string>
     <string name="button_addPlacemark">Add Placemark</string>
     <string name="hint_placemarkTitle">Placemark Title</string>
     <string name="hint_placemarkDescription">Description </string>
@@ -14,11 +14,11 @@
     <string name="title_activity_map">Map</string>
     <string name="menu_deletePlacemark">Delete</string>
     <string name="title_activity_gallery_maps">GalleryMapsActivity</string>
-    <string name="title_activity_login"> Signup/Login to WGG</string>
+    <string name="title_activity_login"> Signup/Login to Gallery Guide</string>
     <string name="all_galleries">All Galleries</string>
     <string name="title_activity_placemark_maps">Map of All Placemarks </string>
     <string name="gallery">Gallery</string>
-    <string name="main_view_galleries">View Galleries</string>
+    <string name="main_view_galleries">View Your Saved Galleries</string>
     <string name="main_all_galleries">All Galleries</string>
     <string name="menu_showMap">Show Map</string>
     <string name="scan_qr">Scan QR Code</string>

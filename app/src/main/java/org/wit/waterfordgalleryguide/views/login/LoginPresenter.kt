@@ -1,20 +1,20 @@
 package org.wit.waterfordgalleryguide.views.login
 
 import android.content.Intent
-import android.widget.Button
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
 import org.wit.waterfordgalleryguide.activities.ButtonActivity
 import org.wit.waterfordgalleryguide.main.MainApp
+import org.wit.waterfordgalleryguide.models.AllGalleriesFireStore
 import org.wit.waterfordgalleryguide.models.GalleryFireStore
-import org.wit.waterfordgalleryguide.views.gallerylist.GalleryListView
 
 class LoginPresenter (val view: LoginView)  {
     private lateinit var loginIntentLauncher : ActivityResultLauncher<Intent>
     var app: MainApp = view.application as MainApp
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     var fireStore: GalleryFireStore? = null
+    var allFireStore: AllGalleriesFireStore? = null
 
     init{
         registerLoginCallback()
