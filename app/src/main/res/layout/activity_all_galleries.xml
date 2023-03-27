@@ -42,27 +42,22 @@
 
                 <TextView
                     android:id="@+id/allGalleryTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:layout_margin="8dp"
-                    android:autofillHints=""
-                    android:inputType="text"
-                    android:maxLength="25"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:textSize="45sp" />
+                    android:layout_width="wrap_content"
+                    android:textSize="50sp"
+                    android:layout_height="wrap_content"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="2sp" />
 
                 <TextView
                     android:id="@+id/allGalleryDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:layout_margin="8dp"
-                    android:autofillHints=""
-                    android:inputType="text"
-                    android:maxLength="25"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:textSize="45sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="2sp"/>
 
                 <ImageView
                     android:id="@+id/allGalleryImage"

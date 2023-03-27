@@ -16,13 +16,13 @@
 
         <ImageView
             android:id="@+id/imageIcon2"
-            android:layout_width="77dp"
-            android:layout_height="87dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="346dp"
+            android:layout_height="173dp"
+            android:layout_marginTop="204dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/change_placemark_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,13 +30,13 @@
             android:id="@+id/allGalleryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="196dp"
-            android:textAlignment="viewStart"
             android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageIcon2"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/allGalleryDescription"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="A Title" />
 
@@ -44,11 +44,13 @@
             android:id="@+id/allGalleryDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toEndOf="@+id/imageIcon2"
-            app:layout_constraintTop_toBottomOf="@+id/allGalleryTitle"
+            android:layout_marginBottom="32dp"
+            app:autoSizeMaxTextSize="100sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toTopOf="@+id/imageIcon2"
+            app:layout_constraintStart_toStartOf="@+id/allGalleryTitle"
             tools:text="A Description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

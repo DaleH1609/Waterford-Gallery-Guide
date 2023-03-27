@@ -24,6 +24,7 @@ class AllGalleriesListActivity : AppCompatActivity(), AllGalleriesListener {
     lateinit var app: MainApp
     private lateinit var binding: ActivityAllGalleriesListBinding
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapsIntentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class AllGalleriesListActivity : AppCompatActivity(), AllGalleriesListener {
 
         loadAllGalleries()
         registerRefreshCallback()
-
+        registerMapCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,6 +53,10 @@ class AllGalleriesListActivity : AppCompatActivity(), AllGalleriesListener {
                 val intent = Intent(this, LoginView::class.java)
                 startActivity(intent)
             }
+            R.id.item_map -> {
+                val launcherIntent = Intent(this, AllGalleriesMapsActivity::class.java)
+                refreshIntentLauncher.launch(launcherIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -63,6 +68,12 @@ class AllGalleriesListActivity : AppCompatActivity(), AllGalleriesListener {
     fun showAllGalleries (allGalleries: List<AllGalleriesModel>) {
         binding.recyclerView1.adapter = AllGalleriesAdapter(allGalleries, this)
         binding.recyclerView1.adapter?.notifyDataSetChanged()
+    }
+
+    private fun registerMapCallback() {
+        mapsIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { }
     }
 
     private fun registerRefreshCallback() {
