@@ -13,7 +13,7 @@ class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        allGalleries = AllGalleriesFireStore(applicationContext)
+        allGalleries = AllGalleriesJSONStore(applicationContext)
         galleries = GalleryFireStore(applicationContext)
         i("Gallery started")
     }
