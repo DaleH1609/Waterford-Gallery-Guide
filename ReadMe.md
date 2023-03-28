@@ -1,7 +1,7 @@
 # __Waterford Gallery Guide__
 
-__Waterford Gallery Guide is a native android application built using Kotlin__
-__Final Project__
+__Waterford Gallery Guide is a native android application built using Kotlin.__
+__Final project for HDip in Computer science.__
 __It is an all-in-one gallery guide for the city built for tourists/locals in mind who are looking to enjoy the artistic scenes across the county.__
 
 !
