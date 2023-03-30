@@ -3,23 +3,26 @@ package org.wit.waterfordgalleryguide.models
 import android.content.Context
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class AllGalleriesFireStore(val context: Context) : AllGalleriesStore{
 
     val allGallery = ArrayList<AllGalleriesModel>()
     lateinit var userId: String
     lateinit var db: DatabaseReference
+    lateinit var st: StorageReference
 
     override fun findAll(): List<AllGalleriesModel> {
         return allGallery
     }
 
     override fun create(allGalleries: AllGalleriesModel) {
-        val key = db.child("global").child("allGalleries").push().key
+        val key = db.child("users").child(userId).child("allGalleries").push().key
         key?.let {
             allGalleries.fbId = key
             allGallery.add(allGalleries)
-            db.child("global").child("allGalleries").child(key).setValue(allGalleries)
+            db.child("global").child(userId).child("allGalleries").child(key).setValue(allGalleries)
         }
     }
 
@@ -43,7 +46,8 @@ class AllGalleriesFireStore(val context: Context) : AllGalleriesStore{
         }
         userId = FirebaseAuth.getInstance().currentUser!!.uid
         db = FirebaseDatabase.getInstance("https://waterford-gallery-guide-404b6-default-rtdb.firebaseio.com/").reference
-        db.child("global").child("allGalleries")
+        st = FirebaseStorage.getInstance().reference
+        db.child("allGalleries")
             .addListenerForSingleValueEvent(valueEventListener)
     }
 }

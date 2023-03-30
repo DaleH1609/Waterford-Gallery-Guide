@@ -21,6 +21,9 @@ class LoginPresenter (val view: LoginView)  {
         if (app.galleries is GalleryFireStore) {
             fireStore = app.galleries as GalleryFireStore
         }
+        if (app.allGalleries is AllGalleriesFireStore) {
+            allFireStore = app.allGalleries as AllGalleriesFireStore
+        }
     }
 
 
@@ -35,6 +38,17 @@ class LoginPresenter (val view: LoginView)  {
                         loginIntentLauncher.launch(launcherIntent)
                     }
                 } else {
+                    view?.hideProgress()
+                    val launcherIntent = Intent(view, ButtonActivity::class.java)
+                    loginIntentLauncher.launch(launcherIntent)
+                }
+                if (allFireStore != null ) {
+                    allFireStore!!.fetchAllGalleries {
+                        val launcherIntent = Intent(view, ButtonActivity::class.java)
+                        loginIntentLauncher.launch(launcherIntent)
+                    }
+                }
+                else {
                     view?.hideProgress()
                     val launcherIntent = Intent(view, ButtonActivity::class.java)
                     loginIntentLauncher.launch(launcherIntent)
