@@ -8,6 +8,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.picasso.Picasso
 import org.wit.waterfordgalleryguide.R
 import org.wit.waterfordgalleryguide.databinding.ActivityAllGalleriesMapsBinding
 import org.wit.waterfordgalleryguide.databinding.ContentAllGalleriesMapsBinding
@@ -50,6 +51,8 @@ class AllGalleriesMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickLis
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
         }
     }
+
+
 
     override fun onMarkerClick(marker: Marker): Boolean {
         val currentTitle: TextView = findViewById(R.id.currentTitle)

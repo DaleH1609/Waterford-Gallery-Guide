@@ -47,6 +47,7 @@ class AllGalleriesFireStore(val context: Context) : AllGalleriesStore{
         userId = FirebaseAuth.getInstance().currentUser!!.uid
         db = FirebaseDatabase.getInstance("https://waterford-gallery-guide-404b6-default-rtdb.firebaseio.com/").reference
         st = FirebaseStorage.getInstance().reference
+        allGallery.clear()
         db.child("allGalleries")
             .addListenerForSingleValueEvent(valueEventListener)
     }
