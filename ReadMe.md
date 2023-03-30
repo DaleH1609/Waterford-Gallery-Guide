@@ -12,7 +12,9 @@ __It is an all-in-one gallery guide for the city built for tourists/locals in mi
 ![img5.png](img5.png)
 ![img6.png](img6.png)
 ![img7.png](img7.png)
-![img8.png](img7.png)
+![img8.png](img8.png)
+![img9.png](img9.png)
+![img10.png](img9.png)
 
 ## Features
 - Add a personal gallery
@@ -21,8 +23,6 @@ __It is an all-in-one gallery guide for the city built for tourists/locals in mi
 - Delete personal gallery spot 
 - FireBase storage
 - Google Maps Implemented
-- Persistence via json data in file
-- Take photo from app and add to FishingSpot image
 - User Register / Login / Signout
 - Authentication via FireBase
 
