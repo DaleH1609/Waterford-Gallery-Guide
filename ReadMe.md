@@ -14,7 +14,7 @@ __It is an all-in-one gallery guide for the city built for tourists/locals in mi
 ![img7.png](img7.png)
 ![img8.png](img8.png)
 ![img9.png](img9.png)
-![img10.png](img9.png)
+![img10.png](img10.png)
 
 ## Features
 - Add a personal gallery
